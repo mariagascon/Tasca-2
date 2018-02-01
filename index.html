@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="funciones.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>Añade y elimina alumnos en una tabla</title>
+</head>
+<body>
+    <!--Título del programa-->
+    <h1>Listado de alumnos</h1>
+    <!--Instrucciones para el funcionamiento del programa-->
+    <h2>Introduce los datos de tus alumnos y aparecerán en una tabla</h2>
+    <!--Formulario-->
+    <form class="form-horizontal" role="form" action="#" onsubmit="return insertar()">
+        <!--Introducción del DNI-->
+        <h5>Introduce el DNI del alumno</h5>
+        <input type="text" class="form-control" name="dni" id="dni" placeholder="Ejemplo: 43208600M" required>
+        <!--Introducción del nombre-->
+        <h5>Introduce el nombre del alumno</h5>
+        <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Ejemplo: Pilar" required>
+        <!--Introducción de los apellidos-->
+        <h5>Introduce el primer apellido del alumno</h5>
+        <input type="text" class="form-control" name="apellidos" id="apellidos" placeholder="Ejemplo: López" required>
+        <!--Introducción del email-->
+        <h5>Introduce el correo electrónico del alumno</h5>
+        <input type="email" class="form-control" name="email" id="email" placeholder="Ejemplo: mariadelpilar@gmail.com" required>
+        <!--Introducción de la nota-->
+        <h5>Introduce la nota del alumno</h5>
+        <input type="number" class="form-control" name="nota" id="nota" min=0 max=10 placeholder="Ejemplo: 7.2" required>
+    
+        <!--Botón-->
+        <button type="submit">
+            <i>Crear tabla</i>
+        </button>
+        
+    </form>
+
+    <br></br>
+    <!--Introducción de los datos en la tabla-->
+    <table class="table table-inverse" id="tabla">
+            <thead>
+              <tr>
+                <th>DNI</th>
+                <th>NOMBRE</th>
+                <th>APELLIDO</th>
+                <th>EMAIL</th>
+                <th>NOTA</th>
+              </tr>
+            </thead>
+            <tbody>
+                <script>
+                    function insertar() {
+                        var filanueva = $("<tr><td>"+$('#dni').val()+"</tr></td>");
+                        filanueva.appendTo("#tabla");
+                    }
+                </script>
+            </tbody>
+          </table>
+</body>
+</html>
