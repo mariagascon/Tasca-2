@@ -15,7 +15,7 @@
     <!--Instrucciones para el funcionamiento del programa-->
     <h2>Introduce los datos de tus alumnos y aparecerán en una tabla</h2>
     <!--Formulario-->
-    <form class="form-horizontal" role="form" action="#" onsubmit="return insertar()">
+    <form class="form-horizontal" role="form" id="formulario" action="#" onsubmit="return insertar()">
         <!--Introducción del DNI-->
         <h5>Introduce el DNI del alumno</h5>
         <input type="text" class="form-control" name="dni" id="dni" placeholder="Ejemplo: 43208600M" required>
@@ -24,19 +24,18 @@
         <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Ejemplo: Pilar" required>
         <!--Introducción de los apellidos-->
         <h5>Introduce el primer apellido del alumno</h5>
-        <input type="text" class="form-control" name="apellidos" id="apellidos" placeholder="Ejemplo: López" required>
+        <input type="text" class="form-control" name="apellidos" id="apellido" placeholder="Ejemplo: López" required>
         <!--Introducción del email-->
         <h5>Introduce el correo electrónico del alumno</h5>
         <input type="email" class="form-control" name="email" id="email" placeholder="Ejemplo: mariadelpilar@gmail.com" required>
         <!--Introducción de la nota-->
         <h5>Introduce la nota del alumno</h5>
-        <input type="number" class="form-control" name="nota" id="nota" min=0 max=10 placeholder="Ejemplo: 7.2" required>
+        <input type="float" class="form-control" name="nota" id="nota" min=0 max=10 placeholder="Ejemplo: 7.2" required>
     
         <!--Botón-->
         <button type="submit">
             <i>Crear tabla</i>
         </button>
-        
     </form>
 
     <br></br>
@@ -53,12 +52,36 @@
             </thead>
             <tbody>
                 <script>
+                    //Esta función inserta filas en la tabla
                     function insertar() {
-                        var filanueva = $("<tr><td>"+$('#dni').val()+"</tr></td>");
+                        var filanueva = $("<tr>"+
+                            "<td>"+$('#dni').val()+"</td>"+
+                            "<td>"+$('#nombre').val()+"</td>"+
+                            "<td>"+$('#apellido').val()+"</td>"+
+                            "<td>"+$('#email').val()+"</td>"+
+                            "<td>"+$('#nota').val()+"</td>"+
+                            "</tr>");
                         filanueva.appendTo("#tabla");
+                        return false;
+                    }
+                    //Esta función elimina filas de la tabla
+                    function eliminar() {
+                        var filamenos = $();
+                    }
+                    //Esta función borra todas las filas de la tabla -hace un reset- para que el usuario
+                    //pueda volver a introducir datos
+                    function borrartabla() {
+                        var borrar = $("tabla").empty();
                     }
                 </script>
             </tbody>
           </table>
+
+     <!--Este botón permite eliminar la tabla entera-->
+     <form action="#" onsubmit="return borrartabla()">
+            <button type="submit">
+                <i>Eliminar tabla</i>
+           </button>
+    </form>
 </body>
 </html>
