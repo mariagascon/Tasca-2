@@ -12,7 +12,7 @@ function comprobardni() {
     /*En caso que la letra introducida no sea correcta saldrá una ventana emergente que obligará al usuario a 
     volver a introducir el DNI*/
     if (letracomprobada!=letra) {
-        window.alert("El DNI introducido no existe; vuelve a introducirlo");
+        return false;
     }
 
 }

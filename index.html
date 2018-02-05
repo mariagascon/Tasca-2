@@ -7,9 +7,10 @@
     <script src="funciones.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="csscss.css">
     <title>Añade y elimina alumnos en una tabla</title>
 </head>
-<body>
+<body id="fondo">
     <!--Título del programa-->
     <h1>Listado de alumnos</h1>
     <!--Instrucciones para el funcionamiento del programa-->
@@ -31,7 +32,7 @@
         <!--Introducción de la nota-->
         <h5>Introduce la nota del alumno</h5>
         <input type="float" class="form-control" name="nota" id="nota" min=0 max=10 placeholder="Ejemplo: 7.2" required>
-    
+        
         <!--Botón-->
         <button type="submit">
             <i>Crear tabla</i>
@@ -52,36 +53,43 @@
             </thead>
             <tbody>
                 <script>
-                    //Esta función inserta filas en la tabla
+                    //Inicializo una variable que se vinculará con cada una de las filas insertadas por el usuario
+                    var numfila = 0;
+                    //Esta función inserta filas en la tabla y llama a la función comprobardni
                     function insertar() {
-                        var filanueva = $("<tr>"+
+                        if (comprobardni()==false) {
+                            window.alert("El DNI introducido no existe; vuelve a introducirlo");
+                            return null;
+                        } else {
+                            var filanueva = $("<tr id='"+numfila+"'>"+
                             "<td>"+$('#dni').val()+"</td>"+
                             "<td>"+$('#nombre').val()+"</td>"+
                             "<td>"+$('#apellido').val()+"</td>"+
                             "<td>"+$('#email').val()+"</td>"+
                             "<td>"+$('#nota').val()+"</td>"+
-                            "</tr>");
+                            "<td>"+("<input type='button' value='Borrar' onclick='eliminarfila("+numfila+")'>")+"</td></tr>");
                         filanueva.appendTo("#tabla");
+                        numfila++; //Esta variable irá incrementando a medida que se inserten filas
                         return false;
+                        }
                     }
                     //Esta función elimina filas de la tabla
-                    function eliminar() {
-                        var filamenos = $();
+                    function eliminarfila(fila) {
+                        $("#"+fila).remove();
                     }
                     //Esta función borra todas las filas de la tabla -hace un reset- para que el usuario
-                    //pueda volver a introducir datos
+                    //pueda volver a introducir todos los datos
                     function borrartabla() {
                         var borrar = $("tabla").empty();
                     }
                 </script>
             </tbody>
           </table>
-
-     <!--Este botón permite eliminar la tabla entera-->
-     <form action="#" onsubmit="return borrartabla()">
+</body>
+        <!--Este botón permite eliminar la tabla entera-->
+        <form action="#" onsubmit="return borrartabla()">
             <button type="submit">
                 <i>Eliminar tabla</i>
-           </button>
-    </form>
-</body>
+            </button>
+        </form>
 </html>
