@@ -11,44 +11,50 @@
     <title>Añade y elimina alumnos en una tabla</title>
 </head>
 <body id="fondo">
-    <!--Título del programa-->
-    <h1>Listado de alumnos</h1>
-    <!--Instrucciones para el funcionamiento del programa-->
-    <h2>Introduce los datos de tus alumnos y aparecerán en una tabla</h2>
+    <div class="titulo1">
+        <!--Título del programa-->
+        <h1>Listado de alumnos</h1>
+    </div>
+    <div class="titulo2">
+        <!--Instrucciones para el funcionamiento del programa-->
+        <h2>Introduce los datos de tus alumnos y aparecerán en una tabla</h2>
+    </div>
+    
+    <br></br>
     <!--Formulario-->
     <form class="form-horizontal" role="form" id="formulario" action="#" onsubmit="return insertar()">
         <!--Introducción del DNI-->
-        <h5>Introduce el DNI del alumno</h5>
+        <h5><b>PASO 1:</b> Introduce el DNI del alumno</h5>
         <input type="text" class="form-control" name="dni" id="dni" placeholder="Ejemplo: 43208600M" required>
         <!--Introducción del nombre-->
-        <h5>Introduce el nombre del alumno</h5>
+        <h5><b>PASO 2:</b> Introduce el nombre del alumno</h5>
         <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Ejemplo: Pilar" required>
         <!--Introducción de los apellidos-->
-        <h5>Introduce el primer apellido del alumno</h5>
+        <h5><b>PASO 3:</b> Introduce el primer apellido del alumno</h5>
         <input type="text" class="form-control" name="apellidos" id="apellido" placeholder="Ejemplo: López" required>
         <!--Introducción del email-->
-        <h5>Introduce el correo electrónico del alumno</h5>
+        <h5><b>PASO 4:</b> Introduce el correo electrónico del alumno</h5>
         <input type="email" class="form-control" name="email" id="email" placeholder="Ejemplo: mariadelpilar@gmail.com" required>
         <!--Introducción de la nota-->
-        <h5>Introduce la nota del alumno</h5>
+        <h5><b>PASO 5:</b> Introduce la nota del alumno</h5>
         <input type="float" class="form-control" name="nota" id="nota" min=0 max=10 placeholder="Ejemplo: 7.2" required>
         
         <!--Botón-->
-        <button type="submit">
+        <button type="submit" class="boton">
             <i>Crear tabla</i>
         </button>
     </form>
-
+    
     <br></br>
     <!--Introducción de los datos en la tabla-->
-    <table class="table table-inverse" id="tabla">
+    <table class="table table-bordered" id="tabla">
             <thead>
               <tr>
-                <th>DNI</th>
-                <th>NOMBRE</th>
-                <th>APELLIDO</th>
-                <th>EMAIL</th>
-                <th>NOTA</th>
+                <th class="cabecera1">DNI</th>
+                <th class="cabecera2">NOMBRE</th>
+                <th class="cabecera3">APELLIDO</th>
+                <th class="cabecera4">EMAIL</th>
+                <th class="cabecera5">NOTA</th>
               </tr>
             </thead>
             <tbody>
@@ -61,7 +67,7 @@
                             window.alert("El DNI introducido no existe; vuelve a introducirlo");
                             return null;
                         } else {
-                            var filanueva = $("<tr id='"+numfila+"'>"+
+                            var filanueva = $("<tr class='datos' id='"+numfila+"'>"+
                             "<td>"+$('#dni').val()+"</td>"+
                             "<td>"+$('#nombre').val()+"</td>"+
                             "<td>"+$('#apellido').val()+"</td>"+
@@ -80,14 +86,14 @@
                     //Esta función borra todas las filas de la tabla -hace un reset- para que el usuario
                     //pueda volver a introducir todos los datos
                     function borrartabla() {
-                        var borrar = $("tabla").empty();
+                        var borrar = $("#tabla .datos").remove();
                     }
                 </script>
             </tbody>
           </table>
 </body>
         <!--Este botón permite eliminar la tabla entera-->
-        <form action="#" onsubmit="return borrartabla()">
+        <form action="#" onsubmit="return borrartabla()" class="boton2">
             <button type="submit">
                 <i>Eliminar tabla</i>
             </button>
