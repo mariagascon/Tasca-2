@@ -65,7 +65,7 @@
                     function insertar() {
                         if (comprobardni()==false) {
                             window.alert("El DNI introducido no existe; vuelve a introducirlo");
-                            return null;
+                            return false;
                         } else {
                             var filanueva = $("<tr class='datos' id='"+numfila+"'>"+
                             "<td>"+$('#dni').val()+"</td>"+
